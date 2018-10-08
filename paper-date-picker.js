@@ -60,7 +60,7 @@ import './paper-date-picker-dialog-style.js';
 import './paper-year-list.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { Element } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 const $_documentContainer = document.createElement('template');
 
 $_documentContainer.innerHTML = `<style is="custom-style" include="paper-date-picker-dialog-style">
@@ -68,7 +68,7 @@ $_documentContainer.innerHTML = `<style is="custom-style" include="paper-date-pi
 </style>`;
 
 document.head.appendChild($_documentContainer.content);
-class PaperDatePicker extends mixinBehaviors([IronResizableBehavior], Element) {
+class PaperDatePicker extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
   static get template() {
     return html`
     <style>

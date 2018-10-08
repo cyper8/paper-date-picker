@@ -11,7 +11,7 @@ import 'moment/moment.js';
 import './paper-date-picker-icons.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { Element } from '@polymer/polymer/polymer-element.js';
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 // Ignore movement within this distance (px)
 const WIGGLE_THRESHOLD = 4;
 const WIGGLE_THRESHOLD_SQUARE = WIGGLE_THRESHOLD * WIGGLE_THRESHOLD;
@@ -34,7 +34,7 @@ function dateDiff(a, b) {
   return (a.getTime() - b.getTime()) / 86400000;
 }
 
-class PaperCalendar extends mixinBehaviors([IronResizableBehavior], Element) {
+class PaperCalendar extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
   static get template() {
     return html`
     <style>

@@ -6,8 +6,8 @@ import '@polymer/paper-styles/default-theme.js';
 import '@polymer/polymer/polymer-legacy.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { Element } from '@polymer/polymer/polymer-element.js';
-class PaperYearList extends mixinBehaviors([IronResizableBehavior], Element) {
+import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+class PaperYearList extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
   static get template() {
     return html`
     <style>
