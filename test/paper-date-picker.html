@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="../bower_components/web-component-tester/browser.js"></script>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+  <script src="../../wct-browser-legacy/browser.js"></script>
   <!-- import the element to test -->
-  <link rel="import" href="../paper-date-picker.html">
+  <script type="module" src="../paper-date-picker.js"></script>
 </head>
 
 <body>
@@ -21,50 +21,50 @@
     </template>
   </test-fixture>
 
-  <script>
+  <script type="module">
+import '../paper-date-picker.js';
 
-    describe('paper-date-picker', function() {
-      var element;
+describe('paper-date-picker', function() {
+  var element;
 
-      context('with a max-date', function() {
+  context('with a max-date', function() {
 
-        beforeEach(function() {
-          element = fixture('max-date-fixture');
-        });
-
-        it('should not swipe after the max bound', function(done) {
-
-          // Check initialization
-          expect(element.date).to.be.not.null;
-          expect(element.maxDate).to.be.not.null;
-          expect(element.id).to.be.equal('picker');
-
-          // Try to swipe after the max bound
-          var calendar = element.$.calendar;
-          calendar._swipeNextMonth();
-          calendar._swipeNextMonth();
-          calendar._swipeNextMonth();
-          calendar._swipeNextMonth();
-
-          // Check after all animation that the calendar has been transformed
-          // once
-          setTimeout(function() {
-            // When the max bound is reached, the div `months` contains only two
-            // months. So we check that the current position is equal to the
-            // half of the width, else it means the calendar has undergone too
-            // much transformations
-            expect(calendar._currentPos).to.equal(
-              -(calendar.$.months.clientWidth / 2)
-            );
-            done();
-          }, 500);
-        });
-
-      });
-
+    beforeEach(function() {
+      element = fixture('max-date-fixture');
     });
 
-  </script>
+    it('should not swipe after the max bound', function(done) {
+
+      // Check initialization
+      expect(element.date).to.be.not.null;
+      expect(element.maxDate).to.be.not.null;
+      expect(element.id).to.be.equal('picker');
+
+      // Try to swipe after the max bound
+      var calendar = element.$.calendar;
+      calendar._swipeNextMonth();
+      calendar._swipeNextMonth();
+      calendar._swipeNextMonth();
+      calendar._swipeNextMonth();
+
+      // Check after all animation that the calendar has been transformed
+      // once
+      setTimeout(function() {
+        // When the max bound is reached, the div `months` contains only two
+        // months. So we check that the current position is equal to the
+        // half of the width, else it means the calendar has undergone too
+        // much transformations
+        expect(calendar._currentPos).to.equal(
+          -(calendar.$.months.clientWidth / 2)
+        );
+        done();
+      }, 500);
+    });
+
+  });
+
+});
+</script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
-<link rel="import" href="../polymer/lib/elements/custom-style.html">
+import '@polymer/polymer/lib/elements/custom-style.js';
+const $_documentContainer = document.createElement('template');
 
-<custom-style>
+$_documentContainer.innerHTML = `<custom-style>
   <style is="custom-style">
   /* mixin definitions */
   html {
@@ -21,9 +22,7 @@
     };
   }
   </style>
-</custom-style>
-
-<dom-module id="paper-date-picker-dialog-style">
+</custom-style><dom-module id="paper-date-picker-dialog-style">
   <template>
     <style>
       /* Application of mixins to local .paper-date-picker-dialog elements */
@@ -43,4 +42,6 @@
       }
     </style>
   </template>
-</dom-module>
+</dom-module>`;
+
+document.head.appendChild($_documentContainer.content);

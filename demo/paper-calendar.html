@@ -7,12 +7,12 @@
 
   <title>paper-date-picker Demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-  <link rel="import" href="../paper-date-picker.html">
-  <link rel="import" href="../../paper-styles/demo-pages.html">
-  <link rel="import" href="../../paper-dialog/paper-dialog.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
+  <script type="module" src="../paper-date-picker.js"></script>
+  <script type="module" src="../../@polymer/paper-styles/demo-pages.js"></script>
+  <script type="module" src="../../@polymer/paper-dialog/paper-dialog.js"></script>
+  <script type="module" src="../../@polymer/paper-button/paper-button.js"></script>
 
   <style is="custom-style">
     section {
@@ -41,20 +41,23 @@
       </div>
     </section>
   </template>
-  <script>
-    HTMLImports.whenReady(function() {
-      var scope = Polymer.dom(document).querySelector('#scope');
-      scope.dateFormat = function(date, format) {
-        if (!date) {
-          return 'No date selected';
-        }
-        return moment(date).format(format);
-      };
-      scope.date = new Date(2017, 3, 13);
-      scope.track = function() {
-        this.$.picker.fire('iron-resize');
-      };
-    });
-  </script>
+  <script type="module">
+import '../paper-date-picker.js';
+import '@polymer/paper-styles/demo-pages.js';
+import '@polymer/paper-dialog/paper-dialog.js';
+import '@polymer/paper-button/paper-button.js';
+import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+var scope = dom(document).querySelector('#scope');
+scope.dateFormat = function(date, format) {
+  if (!date) {
+    return 'No date selected';
+  }
+  return moment(date).format(format);
+};
+scope.date = new Date(2017, 3, 13);
+scope.track = function() {
+  this.$.picker.fire('iron-resize');
+};
+</script>
 </body>
 </html>

@@ -7,10 +7,10 @@
 
     <title>paper-year-list Demo</title>
 
-    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-    <link rel="import" href="../paper-year-list.html">
-    <link rel="import" href="../../paper-styles/demo-pages.html">
+    <script type="module" src="../paper-year-list.js"></script>
+    <script type="module" src="../../@polymer/paper-styles/demo-pages.js"></script>
 
   </head>
 
@@ -26,11 +26,13 @@
       <button on-tap="centerSelected">Center selected year</button>
     </template>
 
-    <script>
-      var scope = document.getElementById('scope');
-      scope.centerSelected = function() {
-        this.$.yearList.centerSelected();
-      };
-    </script>
+    <script type="module">
+import '../paper-year-list.js';
+import '@polymer/paper-styles/demo-pages.js';
+var scope = document.getElementById('scope');
+scope.centerSelected = function() {
+  this.$.yearList.centerSelected();
+};
+</script>
   </body>
 </html>

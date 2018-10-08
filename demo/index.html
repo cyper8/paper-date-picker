@@ -7,52 +7,75 @@
 
   <title>paper-date-picker Demo</title>
 
-  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
 
-  <link rel="import" href="../paper-date-picker.html">
-  <link rel="import" href="../../paper-styles/demo-pages.html">
-  <link rel="import" href="../../paper-dialog/paper-dialog.html">
-  <link rel="import" href="../../paper-button/paper-button.html">
+  <script type="module" src="../paper-date-picker.js"></script>
+  <script type="module" src="../../@polymer/paper-styles/demo-pages.js"></script>
+  <script type="module" src="../../@polymer/paper-dialog/paper-dialog.js"></script>
+  <script type="module" src="../../@polymer/paper-button/paper-button.js"></script>
 
-  <style is="custom-style" include="paper-date-picker-dialog-style">
+  <!-- FIXME(polymer-modulizer):
+        These imperative modules that innerHTML your HTML are
+        a hacky way to be sure that any mixins in included style
+        modules are ready before any elements that reference them are
+        instantiated, otherwise the CSS @apply mixin polyfill won't be
+        able to expand the underlying CSS custom properties.
+        See: https://github.com/Polymer/polymer-modulizer/issues/154
+        -->
+    <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<style is="custom-style" include="paper-date-picker-dialog-style">
     section {
       margin: 24px;
     }
-  </style>
+  </style>`;
+
+document.head.appendChild($_documentContainer.content);
+</script>
 </head>
 <body unresolved>
-  <template is="dom-bind" id="scope">
+  <script type="module">
+const $_documentContainer = document.createElement('template');
+
+$_documentContainer.innerHTML = `<template is="dom-bind" id="scope">
     <section>
       <h1>{{dateFormat(date, 'LL')}}</h1>
-      <paper-button class="btn" on-tap="showDialog" raised>Change Date</paper-button>
-      <paper-dialog id="dialog" class="paper-date-picker-dialog" modal on-iron-overlay-closed="dismissDialog">
+      <paper-button class="btn" on-tap="showDialog" raised="">Change Date</paper-button>
+      <paper-dialog id="dialog" class="paper-date-picker-dialog" modal="" on-iron-overlay-closed="dismissDialog">
         <paper-date-picker id="picker" date="[[date]]"></paper-date-picker>
         <div class="buttons">
-          <paper-button dialog-dismiss>Cancel</paper-button>
-          <paper-button dialog-confirm>OK</paper-button>
+          <paper-button dialog-dismiss="">Cancel</paper-button>
+          <paper-button dialog-confirm="">OK</paper-button>
         </div>
       </paper-dialog>
     </section>
-  </template>
-  <script>
-    HTMLImports.whenReady(function() {
-      var scope = Polymer.dom(document).querySelector('#scope');
-      scope.dateFormat = function(date, format) {
-        return moment(date).format(format);
-      };
-      scope.dismissDialog = function(event) {
-        if (event.detail.confirmed) {
-          scope.date = scope.$.picker.date;
-        }
-      };
-      scope.showDialog = function() {
-        this.$.dialog.toggle();
-      };
-      document.addEventListener('WebComponentsReady', function() {
-        scope.date = new Date(2017, 3, 13);
-        scope.showDialog();
-      });
-    });
-  </script>
+  </template>`;
+
+document.body.appendChild($_documentContainer.content);
+</script>
+  <script type="module">
+import '../paper-date-picker.js';
+import '@polymer/paper-styles/demo-pages.js';
+import '@polymer/paper-dialog/paper-dialog.js';
+import '@polymer/paper-button/paper-button.js';
+import { dom } from '@polymer/polymer/lib/legacy/polymer.dom.js';
+var scope = dom(document).querySelector('#scope');
+scope.dateFormat = function(date, format) {
+  return moment(date).format(format);
+};
+scope.dismissDialog = function(event) {
+  if (event.detail.confirmed) {
+    scope.date = scope.$.picker.date;
+  }
+};
+scope.showDialog = function() {
+  this.$.dialog.toggle();
+};
+document.addEventListener('WebComponentsReady', function() {
+  scope.date = new Date(2017, 3, 13);
+  scope.showDialog();
+});
+</script>
 </body>
 </html>
