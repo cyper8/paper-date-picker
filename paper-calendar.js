@@ -1,4 +1,4 @@
-import '@polymer/polymer/polymer-legacy.js';
+// import '@polymer/polymer/polymer-legacy.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/paper-ripple/paper-ripple.js';
@@ -6,12 +6,13 @@ import '@polymer/paper-styles/color.js';
 import '@polymer/paper-styles/default-theme.js';
 import '@polymer/paper-styles/shadow.js';
 import '@polymer/paper-styles/typography.js';
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
+import './paper-date-picker-dialog-style.js';
 import 'moment/moment.js';
 import './paper-date-picker-icons.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
+import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 // Ignore movement within this distance (px)
 const WIGGLE_THRESHOLD = 4;
 const WIGGLE_THRESHOLD_SQUARE = WIGGLE_THRESHOLD * WIGGLE_THRESHOLD;
@@ -37,7 +38,7 @@ function dateDiff(a, b) {
 class PaperCalendar extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
   static get template() {
     return html`
-    <style>
+    <style include="paper-date-picker-dialog-style">
       :host {
         display: block;
         box-sizing: border-box;

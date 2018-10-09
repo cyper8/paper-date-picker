@@ -36,19 +36,14 @@ styling:
 @homepage http://bendavis78.github.io/paper-date-picker/
 @demo demo/index.html
 */
-/*
-  FIXME(polymer-modulizer): the above comments were extracted
-  from HTML and may be out of place here. Review them and
-  then delete this comment!
-*/
-import '@polymer/polymer/polymer-legacy.js';
+
+// import '@polymer/polymer/polymer-legacy.js';
 
 import '@polymer/iron-media-query/iron-media-query.js';
 import '@polymer/neon-animation/neon-animated-pages.js';
 import '@polymer/neon-animation/neon-animatable.js';
 import '@polymer/neon-animation/animations/fade-in-animation.js';
 import '@polymer/neon-animation/animations/fade-out-animation.js';
-import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '@polymer/iron-flex-layout/iron-flex-layout.js';
 import '@polymer/paper-styles/color.js';
@@ -58,20 +53,21 @@ import '@polymer/paper-styles/typography.js';
 import './paper-calendar.js';
 import './paper-date-picker-dialog-style.js';
 import './paper-year-list.js';
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+// import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class.js';
-import { PolymerElement } from '@polymer/polymer/polymer-element.js';
-const $_documentContainer = document.createElement('template');
+import { IronResizableBehavior } from '@polymer/iron-resizable-behavior/iron-resizable-behavior.js';
+// const $_documentContainer = document.createElement('template');
 
-$_documentContainer.innerHTML = `<style is="custom-style" include="paper-date-picker-dialog-style">
-  /* includes dialog style at document-level for backward compatibility */
-</style>`;
+// $_documentContainer.innerHTML = `<style is="custom-style" include="paper-date-picker-dialog-style">
+//   /* includes dialog style at document-level for backward compatibility */
+// </style>`;
 
 document.head.appendChild($_documentContainer.content);
 class PaperDatePicker extends mixinBehaviors([IronResizableBehavior], PolymerElement) {
   static get template() {
     return html`
-    <style>
+    <style include="paper-date-picker-dialog-style">
       :host {
         -webkit-touch-callout: none;
         -webkit-user-select: none;

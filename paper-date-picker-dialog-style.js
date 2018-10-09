@@ -1,3 +1,4 @@
+import '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/custom-style.js';
 const $_documentContainer = document.createElement('template');
 
